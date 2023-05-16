@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.inhatc.mapper.Labmaster202044105Mapper">
+
+<insert id="insertLab">
+		insert into tbl_202044105_lab_master (training_id, training_name, training_people, training_location,training_category,training_sub) values
+		( #{training_id}, #{training_name}, #{training_people}, #{training_location} , #{training_category}, #{training_sub})
+	</insert>
+<select id="selectLab" resultType="com.inhatc.domain.Labmaster202044105VO">
+		select * from tbl_202044105_lab_master
+		where training_id = #{training_id}
+			</select>
+			
+			<select id="modify" resultType="com.inhatc.domain.Labmaster202044105VO">
+		update tbl_202044105_lab_master set training_name=#{training_name},training_people=#{training_people},training_location=#{training_location},training_category=#{training_category},training_sub=#{training_sub}
+			where training_id = #{training_id}
+	</select>
+	<select id="delete">
+		delete from tbl_202044105_lab_master where training_id = #{training_id}
+	</select>
+	
+		<select id="listAll" resultType="com.inhatc.domain.Labmaster202044105VO">
+		<![CDATA[
+		select training_id, training_name, training_people,training_location,training_category,training_sub
+		from tbl_202044105_lab_master
+		order by training_id asc
+		]]>
+	</select>
+
+</mapper>

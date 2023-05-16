@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.inhatc.mapper.subjectMapper">
+	<select id = "getTime" resultType = "string">
+		select now()
+	</select>
+	
+	<select id="insertSubject">
+		insert into tbl_subject (stu_no, kor_score, math_score, eng_score) values
+		( #{stu_no}, #{kor_score}, #{math_score}, #{eng_score} )
+	</select>
+	
+	<select id="readSubject" resultType="com.inhatc.domain.SubjectVO">
+		select kor_score, math_score, eng_score from tbl_subject where stu_no = #{stu_no}
+	</select>
+	
+	<select id="modify">
+		update tbl_subject set kor_score = #{kor_score},
+		math_score = #{math_score},
+		eng_score = #{eng_score}
+		where stu_no = #{stu_no}
+	</select>
+	
+	<select id="delete">
+		delete from tbl_subject where stu_no = #{stu_no}
+	</select>
+	
+	<select id="listAll" resultType="com.inhatc.domain.SubjectVO">
+		<![CDATA[
+		select stu_no, kor_score, math_score, eng_score
+		from tbl_subject
+		order by stu_no asc
+		]]>
+	</select>
+	
+</mapper>
